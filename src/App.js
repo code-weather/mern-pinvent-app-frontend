@@ -1,5 +1,6 @@
+import axios from 'axios';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Layout from "./components/layout/Layout"
+import Layout from './components/layout/Layout';
 import Sidebar from './components/sidebar/Sidebar';
 import Forgot from './pages/auth/Forgot';
 import Login from './pages/auth/Login';
@@ -7,6 +8,8 @@ import Register from './pages/auth/Register';
 import Reset from './pages/auth/Reset';
 import Dashboard from './pages/dashboard/Dashboard';
 import Home from './pages/Home/Home';
+
+axios.defaults.withCredentials = true;
 
 function App() {
   return (
@@ -18,13 +21,16 @@ function App() {
         <Route path="/forgot" element={<Forgot />} />
         <Route path="/resetpassword/:resetToken" element={<Reset />} />
 
-        <Route path="/dashboard" element={
-          <Sidebar>
-            <Layout>
-              <Dashboard></Dashboard>
-            </Layout>
-          </Sidebar>
-        }/>
+        <Route
+          path="/dashboard"
+          element={
+            <Sidebar>
+              <Layout>
+                <Dashboard></Dashboard>
+              </Layout>
+            </Sidebar>
+          }
+        />
       </Routes>
     </BrowserRouter>
   );
